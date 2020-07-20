@@ -1,0 +1,29 @@
+.containerHeader {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.containerHeader h1 {
+    font-weight: 600;
+    font-size: 48px;
+    color: #363636;
+}
+
+#order {
+    width: 256px;
+    height: 40px;
+    background-color: #fff;
+    border: 1px solid #E1E1E1;
+    color: #423B3B;
+    border-radius: 4px;
+}
+
+#order:focus {
+    outline: none;
+}
+
+#order option{
+    font-size: 14px;
+    color: #423B3B;
+} 
