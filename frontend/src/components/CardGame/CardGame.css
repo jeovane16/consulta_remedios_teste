@@ -1,0 +1,61 @@
+.containerCardGame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 262px;
+    height: 230px;
+    background-color: #eeeeee;
+    border-radius: 3px;
+}
+
+.image img {
+    width: 180px;
+    height: 180px;
+}
+
+.infoGame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nameGame {
+    margin-top: 13px;
+    font-size: 16px;
+    color: #746a6a;
+}
+
+.priceGame {
+    font-size: 16;
+    font-weight: bold;
+    color: #3486E6;
+}
+
+.containerCardGame:hover .infoGame{
+    display: none;
+}
+
+.containerCardGame button{
+    display: none;
+}
+
+.containerCardGame:hover button{
+    display: block;
+    border: none;
+    background-color: #fff;
+    color: #3486E6;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    
+}
