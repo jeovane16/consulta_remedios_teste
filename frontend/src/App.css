@@ -1,3 +1,18 @@
 .App {
-  text-align: center;
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: 100px 1fr;
+  grid-template-areas: 
+    'header cart'
+    'main cart';
+}
+
+.containerMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  grid-area: main;
+  margin-top: 40px;
 }

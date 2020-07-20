@@ -3,7 +3,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+    height: 300px;
+    width: 265px;
+    margin-bottom: 30px;
 }
 
 .image {
@@ -61,5 +63,6 @@
     font-weight: bold;
     margin-top: 20px;
     cursor: pointer;
+    height: 36px;
     
 }
