@@ -17,6 +17,8 @@ interface Products {
 function App() {
 
   const [products, setProducts] = useState<Products[]>([]);
+  const [selectedProducts, setSelectedProducts] = useState<Products[]>([]);
+  const [total, setTotal] = useState(0);
 
   useEffect(()=>{
     getProducts().then(response =>{
@@ -25,17 +27,20 @@ function App() {
     })
   });
 
-  console.log(products)
+  function handleSetProducts(product: Products){
+    setSelectedProducts([...selectedProducts, product]);
+    setTotal(total+product.price);
+  }
 
   return (
     <div className='App'>
       <Header />
       <main className='containerMain'>
         {products.map(product =>
-            <CardGame product={product}/>
+            <CardGame key={product.id} onClick={()=>handleSetProducts(product)} product={product}/>
         )}
       </main>
-      <Cart />
+      <Cart products={selectedProducts}/>
     </div>
   );
 }

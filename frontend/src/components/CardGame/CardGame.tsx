@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './CardGame.css';
-import image from '../../assets/fifa-18.png';
 
 interface Products {
     id: number,
@@ -8,9 +7,9 @@ interface Products {
     price: number,
     score: number,
     image: string
-  }
+}
 
-export default function CardGame(props: {product: Products}){
+export default function CardGame(props: {product: Products, onClick: Function}){
 
     const formatPrice = props.product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
 
@@ -23,7 +22,7 @@ export default function CardGame(props: {product: Products}){
                 <span className='nameGame'>{props.product.name}</span>
                 <span className='priceGame'>{formatPrice}</span>
             </div>
-            <button>Adicionar ao carrinho</button>
+            <button onClick={()=>props.onClick()}>Adicionar ao carrinho</button>
         </div>
     );
 }
