@@ -30,23 +30,31 @@ function App() {
   });
 
   useEffect(()=>{
-    if(subTotal > 250){
+    let aux = 0;
+    selectedProducts.map(product => aux+=product.price);
+    setSubTotal(aux);
+    if(subTotal>250){
       setFreight(0);
-    }
-  }, [subTotal]);
-
-  useEffect(()=>{
-    if(subTotal > 250){
       setTotal(subTotal);
     }else{
+      setFreight(10*selectedProducts.length);
       setTotal(subTotal+freight);
     }
-  }, [subTotal]);
-
+  });
+  
   function handleSetProducts(product: Products){
     setSelectedProducts([...selectedProducts, product]);
-    setSubTotal(subTotal+product.price);
-    setFreight(freight+10);
+  }
+
+  function handleRemoveItem(product: Products){
+    const auxProducts = selectedProducts;
+    for( let i = 0; i < auxProducts.length; i++){ 
+      if ( auxProducts[i].id === product.id) {
+        auxProducts.splice(i,1);
+        setSelectedProducts(auxProducts);
+          break;
+      }
+    }
   }
 
 
@@ -66,6 +74,7 @@ function App() {
         total={total} 
         subTotal={subTotal} 
         freight={freight}
+        callbackParent={(product: Products) => handleRemoveItem(product)}
       />
     </div>
   );
