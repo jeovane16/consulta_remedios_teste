@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import CardGame from './components/CardGame/CardGame';
 import Cart from './components/Cart/Cart';
+import WindowConfirm from './components/WindowConfirm/WindowConfirm';
 
 import getProducts from './services/api';
 
@@ -22,6 +23,7 @@ function App() {
   const [total, setTotal] = useState(0.0);
   const [freight, setFreight] = useState(0.0);
   const [order, setOrder] = useState('');
+  const [finish, setFinish] = useState(false);
 
   useEffect(()=>{
     getProducts().then(response =>{
@@ -102,6 +104,10 @@ function App() {
     setOrder(newOrder);
   }
 
+  function resetApp(){
+    setFinish(!finish);
+    setSelectedProducts([]);
+  }
 
   return (
     <div className='App'>
@@ -120,7 +126,12 @@ function App() {
         subTotal={subTotal} 
         freight={freight}
         callbackParent={(product: Products) => handleRemoveItem(product)}
+        onClick={()=>{resetApp()}}
       />
+      {finish ? 
+        <WindowConfirm  onClick={()=>{resetApp()}}/>
+        : ''
+      }
     </div>
   );
 }

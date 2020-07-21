@@ -10,7 +10,7 @@ interface Products {
     image: string
 }
 
-export default function Cart(props:{products:Products[], total: number, subTotal: number, freight: number, callbackParent: Function}){
+export default function Cart(props:{products:Products[], total: number, subTotal: number, freight: number, callbackParent: Function, onClick: Function}){
 
     function formatPrice(price: number){
         return price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
@@ -41,7 +41,7 @@ export default function Cart(props:{products:Products[], total: number, subTotal
                             <span className='contentInfo'> <span className='label'>Frete</span> <span className='infoSale'>{formatPrice(props.freight)}</span> </span>
                             <span className='contentInfo'> <span className='label'>Total</span> <span className='total'>{formatPrice(props.total)}</span> </span>
                     </div>
-                    <button className='buttonFinish'>FINALIZAR COMPRA</button>
+                    <button onClick={()=>{props.onClick()}} className='buttonFinish'>FINALIZAR COMPRA</button>
                 </div>
             );
         }else {
