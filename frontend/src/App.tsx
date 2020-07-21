@@ -21,6 +21,7 @@ function App() {
   const [subTotal, setSubTotal] = useState(0.0);
   const [total, setTotal] = useState(0.0);
   const [freight, setFreight] = useState(0.0);
+  const [order, setOrder] = useState('');
 
   useEffect(()=>{
     getProducts().then(response =>{
@@ -41,6 +42,46 @@ function App() {
       setTotal(subTotal+freight);
     }
   });
+
+
+
+  
+  switch (order){
+    case 'mostPopular':
+      products.sort(function (a,b){
+        if(a.score>b.score){
+          return 1;
+        }
+        if (a.score < b.score) {
+          return -1;
+        }
+        return 0;
+      })
+      break;
+    case 'lowestPrice':
+      products.sort(function (a,b){
+        if(a.price<b.price){
+          return 1;
+        }
+        if (a.price > b.price) {
+          return -1;
+        }
+        return 0;
+      })
+      break;
+    case 'biggestPrice':
+      products.sort(function (a,b){
+        if(a.price>b.price){
+          return 1;
+        }
+        if (a.price < b.price) {
+          return -1;
+        }
+        return 0;
+      })
+      break;
+  }
+    
   
   function handleSetProducts(product: Products){
     setSelectedProducts([...selectedProducts, product]);
@@ -57,10 +98,14 @@ function App() {
     }
   }
 
+  function handleOrder(newOrder: string){
+    setOrder(newOrder);
+  }
+
 
   return (
     <div className='App'>
-      <Header />
+      <Header order={(order:string)=>handleOrder(order)}/>
       <main className='containerMain'>
         {products.map(product =>
             <CardGame 
