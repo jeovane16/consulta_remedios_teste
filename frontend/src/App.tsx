@@ -45,27 +45,24 @@ function App() {
     }
   });
 
-
-
   
   switch (order){
     case 'mostPopular':
       products.sort(function (a,b){
-        if(a.score>b.score){
+        if(a.score > b.score){
           return 1;
         }
-        if (a.score < b.score) {
+        if(a.score < b.score) {
           return -1;
         }
         return 0;
       })
       break;
-    case 'lowestPrice':
       products.sort(function (a,b){
-        if(a.price<b.price){
+        if(a.price < b.price){
           return 1;
         }
-        if (a.price > b.price) {
+        if(a.price > b.price) {
           return -1;
         }
         return 0;
@@ -73,17 +70,15 @@ function App() {
       break;
     case 'biggestPrice':
       products.sort(function (a,b){
-        if(a.price>b.price){
+        if(a.price > b.price){
           return 1;
         }
-        if (a.price < b.price) {
+        if(a.price < b.price) {
           return -1;
         }
         return 0;
       })
-      break;
-  }
-    
+  }    
   
   function handleSetProducts(product: Products){
     setSelectedProducts([...selectedProducts, product]);
