@@ -18,7 +18,9 @@ function App() {
 
   const [products, setProducts] = useState<Products[]>([]);
   const [selectedProducts, setSelectedProducts] = useState<Products[]>([]);
-  const [total, setTotal] = useState(0);
+  const [subTotal, setSubTotal] = useState(0.0);
+  const [total, setTotal] = useState(0.0);
+  const [freight, setFreight] = useState(0.0);
 
   useEffect(()=>{
     getProducts().then(response =>{
@@ -27,20 +29,44 @@ function App() {
     })
   });
 
+  useEffect(()=>{
+    if(subTotal > 250){
+      setFreight(0);
+    }
+  }, [subTotal]);
+
+  useEffect(()=>{
+    if(subTotal > 250){
+      setTotal(subTotal);
+    }else{
+      setTotal(subTotal+freight);
+    }
+  }, [subTotal]);
+
   function handleSetProducts(product: Products){
     setSelectedProducts([...selectedProducts, product]);
-    setTotal(total+product.price);
+    setSubTotal(subTotal+product.price);
+    setFreight(freight+10);
   }
+
 
   return (
     <div className='App'>
       <Header />
       <main className='containerMain'>
         {products.map(product =>
-            <CardGame key={product.id} onClick={()=>handleSetProducts(product)} product={product}/>
+            <CardGame 
+              key={product.id} onClick={()=>handleSetProducts(product)} 
+              product={product}
+            />
         )}
       </main>
-      <Cart products={selectedProducts}/>
+      <Cart 
+        products={selectedProducts} 
+        total={total} 
+        subTotal={subTotal} 
+        freight={freight}
+      />
     </div>
   );
 }

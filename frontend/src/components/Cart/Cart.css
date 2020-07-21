@@ -15,6 +15,12 @@
     margin-left: 25px;
 }
 
+.items {
+    font-size: 14px;
+    color: #7F7575;
+    font-weight: normal;
+}
+
 .empityCart {
     align-self: center;
     display: flex;
@@ -36,6 +42,142 @@
     color: #746a6a;
 }
 
-.hide {
+.itemsCart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.itemsCart ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.itemsCart ul li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 10px;    
+}
+
+.imageProductCart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #EEEEEE;
+    width: 60px;
+    height: 53px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+.imageProductCart img {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    margin: 0;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.name {
+    font-size: 14px;
+    color: #7F7575;
+}
+
+.price {
+    font-size: 14px;
+    font-weight: bold;
+    color: #423B3B;
+}
+
+.saleInformation {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 15px;
+    
+}
+
+.label {
+    text-align: left;   
+    font-size: 14px;
+    color: #7F7575;
+}
+
+.infoSale {
+    text-align: right;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0px;
+    color: #423B3B;
+}
+
+.total {
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0px;
+    color: #423B3B;
+}
+
+.contentInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.buttonFinish {
+    background: #54A3FF;
+    border-radius: 3px;
+    border: none;
+    color: #fff;
+    width: 238px;
+    height: 50px;
+    margin-bottom: 10px;
+    transition: opacity 400ms;
+    cursor: pointer;
+}
+
+.buttonFinish:hover {
+    opacity: 0.8;
+
+}
+
+.buttonFinish:focus {
+    outline: none;
+}
+
+.buttonRemove {
     display: none;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #54A3FF;
+    color: #fff;
+}
+
+.itemsCart ul li:hover .buttonRemove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    justify-self: flex-end;
 }

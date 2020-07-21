@@ -10,7 +10,7 @@ interface Products {
     image: string
 }
 
-export default function Cart(props:{products:Products[]}){
+export default function Cart(props:{products:Products[], total: number, subTotal: number, freight: number}){
 
     function formatPrice(price: number){
         return price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
@@ -21,25 +21,27 @@ export default function Cart(props:{products:Products[]}){
         if(products.length > 0){
             return(
                 <div className='itemsCart'>
-                    <div className='listProducts'>
                         <ul>
                             {props.products.map(product => 
                                 <li key={product.id}>
-                                    <img src={require(`../../assets/${product.image}`)} alt={product.name}/>
-                                    <div>
-                                        <span>{product.name}</span>
-                                        <span>{formatPrice(product.price)}</span>
+                                    <div className='imageProductCart'>
+                                        <img src={require(`../../assets/${product.image}`)} alt={product.name}/>
                                     </div>
+                                    
+                                    <div className='info'>
+                                        <span className='name'>{product.name}</span>
+                                        <span className='price'>{formatPrice(product.price)}</span>
+                                    </div>
+                                    <button className='buttonRemove'>X</button>
                                 </li>
                             )}
                         </ul>
-                    </div>
                     <div className='saleInformation'>
-                            <span> <span>subtotal</span> <span>{}</span> </span>
-                            <span> <span>frete</span> <span>{}</span> </span>
-                            <span> <span>total</span> <span>{}</span> </span>
+                            <span className='contentInfo'> <span className='label'>Subtotal</span> <span className='infoSale'>{formatPrice(props.subTotal)}</span> </span>
+                            <span className='contentInfo'> <span className='label'>Frete</span> <span className='infoSale'>{formatPrice(props.freight)}</span> </span>
+                            <span className='contentInfo'> <span className='label'>Total</span> <span className='total'>{formatPrice(props.total)}</span> </span>
                     </div>
-                    <button>FINALIZAR COMPRA</button>
+                    <button className='buttonFinish'>FINALIZAR COMPRA</button>
                 </div>
             );
         }else {
@@ -54,7 +56,7 @@ export default function Cart(props:{products:Products[]}){
 
     return(
         <div className='containerCart'>
-            <h2>Carrinho</h2>
+            <h2>Carrinho <span className='items'>{props.products.length ? `(${props.products.length} Items)`: ''}</span></h2>
             {verifyProps(props.products)}
         </div>
     );
